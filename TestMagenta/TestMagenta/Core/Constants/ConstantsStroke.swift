@@ -19,5 +19,5 @@ public struct ConstantsStroke {
         static let randomPhotoScreenTabBarItemImage: String = "magnifyingglass"
     // MARK: TabBarItem favorite photo
         static let favoritePhotoScreenTabBarDescription: String = "Favorites"
-        static let heartSystemImage: String = "heart.fill"
+        static let heartSystemImage: String = "heart"
 }
