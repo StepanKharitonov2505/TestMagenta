@@ -25,7 +25,8 @@
 		1D82314229C389DB00467F9E /* ConstantsNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D82314129C389DB00467F9E /* ConstantsNumeric.swift */; };
 		1D82314429C394A300467F9E /* RealmMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D82314329C394A300467F9E /* RealmMethods.swift */; };
 		1D82314629C39C8900467F9E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D82314529C39C8800467F9E /* BaseViewController.swift */; };
-		1D82314B29C4C7AD00467F9E /* ActionVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D82314A29C4C7AD00467F9E /* ActionVoid.swift */; };
+		1D875E5229C59C4A0089E049 /* ProtocolStandardSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D875E5129C59C4A0089E049 /* ProtocolStandardSetupView.swift */; };
+		1D875E5429C5BBA40089E049 /* ImageInFileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D875E5329C5BBA40089E049 /* ImageInFileDirectory.swift */; };
 		7CAB1ED1C72E68A22AC2D1FB /* Pods_TestMagenta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC9018D75A7D2CF7C44FEF1 /* Pods_TestMagenta.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +51,8 @@
 		1D82314129C389DB00467F9E /* ConstantsNumeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsNumeric.swift; sourceTree = "<group>"; };
 		1D82314329C394A300467F9E /* RealmMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMethods.swift; sourceTree = "<group>"; };
 		1D82314529C39C8800467F9E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		1D82314A29C4C7AD00467F9E /* ActionVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionVoid.swift; sourceTree = "<group>"; };
+		1D875E5129C59C4A0089E049 /* ProtocolStandardSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolStandardSetupView.swift; sourceTree = "<group>"; };
+		1D875E5329C5BBA40089E049 /* ImageInFileDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInFileDirectory.swift; sourceTree = "<group>"; };
 		36E6163727D980689F6F7142 /* Pods-TestMagenta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMagenta.release.xcconfig"; path = "Target Support Files/Pods-TestMagenta/Pods-TestMagenta.release.xcconfig"; sourceTree = "<group>"; };
 		CEBD8F51404B3ABF218130C4 /* Pods-TestMagenta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMagenta.debug.xcconfig"; path = "Target Support Files/Pods-TestMagenta/Pods-TestMagenta.debug.xcconfig"; sourceTree = "<group>"; };
 		FBC9018D75A7D2CF7C44FEF1 /* Pods_TestMagenta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMagenta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +95,6 @@
 				1D82312429C09A0A00467F9E /* TabBar */,
 				1D82312F29C0A81100467F9E /* Views */,
 				1D82312E29C0A7FF00467F9E /* Model */,
-				1D82314929C4C79700467F9E /* Utils */,
 				1D82312D29C0A7C900467F9E /* Resources */,
 				1D82312C29C0A7A700467F9E /* Enviropments */,
 			);
@@ -161,6 +162,7 @@
 				1D82314329C394A300467F9E /* RealmMethods.swift */,
 				1D82313B29C0BA5700467F9E /* StructureJSON.swift */,
 				1D82313F29C0BFA600467F9E /* StructureFavoriteJSON.swift */,
+				1D875E5329C5BBA40089E049 /* ImageInFileDirectory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +173,7 @@
 				1D82314829C3AC2B00467F9E /* RandomPhoto */,
 				1D82314729C3AC2000467F9E /* FavoritePhoto */,
 				1D82314529C39C8800467F9E /* BaseViewController.swift */,
+				1D875E5129C59C4A0089E049 /* ProtocolStandardSetupView.swift */,
 				1D82313229C0B17900467F9E /* CollectionsPhotoView.swift */,
 				1D82313929C0B3CE00467F9E /* CollectionsPhotoCell.swift */,
 			);
@@ -191,14 +194,6 @@
 				1D82310B29C0920300467F9E /* RandomPhotoViewController.swift */,
 			);
 			path = RandomPhoto;
-			sourceTree = "<group>";
-		};
-		1D82314929C4C79700467F9E /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1D82314A29C4C7AD00467F9E /* ActionVoid.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		4F9B777B4AF3A3B206557B2D /* Frameworks */ = {
@@ -341,12 +336,13 @@
 				1D82312829C09A5600467F9E /* TabBarItem.swift in Sources */,
 				1D82312B29C09AC400467F9E /* ConstantsStroke.swift in Sources */,
 				1D82313329C0B17900467F9E /* CollectionsPhotoView.swift in Sources */,
+				1D875E5229C59C4A0089E049 /* ProtocolStandardSetupView.swift in Sources */,
 				1D82310A29C0920300467F9E /* SceneDelegate.swift in Sources */,
 				1D82312329C0976700467F9E /* UIColor+Extension.swift in Sources */,
+				1D875E5429C5BBA40089E049 /* ImageInFileDirectory.swift in Sources */,
 				1D82313A29C0B3CE00467F9E /* CollectionsPhotoCell.swift in Sources */,
 				1D82314029C0BFA600467F9E /* StructureFavoriteJSON.swift in Sources */,
 				1D82314629C39C8900467F9E /* BaseViewController.swift in Sources */,
-				1D82314B29C4C7AD00467F9E /* ActionVoid.swift in Sources */,
 				1D82313129C0B04F00467F9E /* LoadImageFromUrl.swift in Sources */,
 				1D82314429C394A300467F9E /* RealmMethods.swift in Sources */,
 			);

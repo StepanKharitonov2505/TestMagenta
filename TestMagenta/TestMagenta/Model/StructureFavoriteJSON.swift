@@ -10,12 +10,10 @@ import RealmSwift
 
 class StructureFavoriteJSON: Object {
     @Persisted var url: String
-    @Persisted var data: Data
     
-    convenience init(url: String, data: Data) {
+    convenience init(url: String) {
         self.init()
         self.url = url
-        self.data = data
     }
     
     override static func primaryKey() -> String? {

@@ -10,7 +10,7 @@ import Foundation
 class StructureJSON: Codable {
     let id: String
     let url: String
-    let download_url: String
+    let downloadUrl: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -21,12 +21,12 @@ class StructureJSON: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(id, forKey: .id)
         try container.encode(url, forKey: .url)
-        try container.encode(download_url, forKey: .download_url)
+        try container.encode(downloadUrl, forKey: .download_url)
       }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         url = try container.decode(String.self, forKey: .url)
-        download_url = try container.decode(String.self, forKey: .download_url)
+        downloadUrl = try container.decode(String.self, forKey: .download_url)
       }
 }

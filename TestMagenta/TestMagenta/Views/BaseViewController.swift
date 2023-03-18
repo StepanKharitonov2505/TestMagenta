@@ -34,10 +34,12 @@ class BaseViewController: UIViewController {
         self.dataSetup()
     }
     
+    // MARK: Functions
     func dataSetup() {
     }
 }
 
+// MARK: Collection Data Source
 extension BaseViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0

@@ -21,7 +21,7 @@ enum TabBarItem: Int {
     var imageName: String {
         switch self {
         case.randomPhoto: return ConstantsStroke.randomPhotoScreenTabBarItemImage
-        case .favoritePhoto: return ConstantsStroke.favoritePhotoScreenTabBarItemImage
+        case .favoritePhoto: return ConstantsStroke.heartSystemImage
         }
     }
     

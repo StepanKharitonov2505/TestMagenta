@@ -7,12 +7,19 @@
 
 import UIKit
 import SDWebImage
+import RealmSwift
 
 class RandomPhotoViewController: BaseViewController {
 
     // MARK: Properties
     private var loadDataMethods = LoadImageFromUrl()
-    private var imageDataArray: [StructureJSON] = []
+    private var imageDataArray: [StructureJSON] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.customView.collectionView.reloadData()
+            }
+        }
+    }
     private var pageNumber: Int = 1
     
     // MARK: Functions
@@ -20,9 +27,6 @@ class RandomPhotoViewController: BaseViewController {
         loadDataMethods.getImage(pageNumber: pageNumber) {[weak self] imageDataArray in
             guard let self = self else { return }
             self.imageDataArray = imageDataArray
-            DispatchQueue.main.async {
-            self.customView.collectionView.reloadData()
-            }
         }
     }
     
@@ -31,9 +35,6 @@ class RandomPhotoViewController: BaseViewController {
         self.loadDataMethods.getImage(pageNumber: self.pageNumber) {[weak self] imageDataArray in
                 guard let self = self else { return }
                 self.imageDataArray.append(contentsOf: imageDataArray)
-                DispatchQueue.main.async {
-                self.customView.collectionView.reloadData()
-                }
             }
         }
 }
@@ -46,27 +47,34 @@ extension RandomPhotoViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantsStroke.randomPhotoReuseId, for: indexPath) as? CollectionsPhotoCell else { return UICollectionViewCell() }
-        let element = imageDataArray[indexPath.item]
-        let url = URL(string: element.download_url)
+        let element = imageDataArray[indexPath.row]
+        let url = URL(string: element.downloadUrl)
         cell.imageView.sd_imageTransition = .fade(duration: 0.3)
-        cell.imageView.sd_setImage(with: url)
-        cell.url = url
+        cell.imageView.sd_setImage(with: url) 
+        cell.likeButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        cell.likeButton.tag = indexPath.row
         cell.likeButton.isUserInteractionEnabled = true
         return cell
     }
-
+    
+    @objc func tapButton(sender: UIButton) {
+        let element = imageDataArray[sender.tag]
+        let replaceName = element.downloadUrl
+            .replacingOccurrences(of: "/", with: "")
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ":", with: "")
+        guard let url =  URL(string: element.downloadUrl) else { return }
+        DispatchQueue.global(qos: .utility).async {
+            if let data = try? Data(contentsOf: url) {
+                ImageInFileDirectory().saveImage(url: replaceName, data: data)
+                RealmMethods().saveFavoriteImageData(url: replaceName)
+            }
+        }
+    }
 }
 
 // MARK: Collection Delegate
 extension RandomPhotoViewController {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionsPhotoCell else { return }
-        cell.callTapButton = { item in
-            if let data = try? Data(contentsOf: item) {
-                RealmMethods().saveFavoriteImageData(url: item.absoluteString, data: data)
-            }
-        }
-    }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if indexPath.item == imageDataArray.count - 10 {
                 loadMoreData()
