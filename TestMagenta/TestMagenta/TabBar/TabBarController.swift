@@ -8,7 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
@@ -37,7 +37,7 @@ class TabBarController: UITabBarController {
         let width = tabBar.bounds.width
         let substrateLayer = createTabBarLayer()
         self.tabBar.layer.insertSublayer(substrateLayer, at: 0)
-        self.tabBar.itemWidth = width / 2
+        self.tabBar.itemWidth = width / ConstantsNumeric.relationItemWidth
         self.tabBar.itemPositioning = .centered
         self.tabBar.tintColor = UIColor.tabBarSelectedColor
         self.tabBar.unselectedItemTintColor = UIColor.tabBarUnselectedColor
@@ -49,23 +49,25 @@ class TabBarController: UITabBarController {
     }
     
     private func createTabBarLayer() -> CAShapeLayer {
-        let positionOnX: CGFloat = 10
-        let positionOnY: CGFloat = 14
-        let height = self.tabBar.bounds.height + positionOnY*2
+        
+        let positionOnX: CGFloat = 4
+        let positionOnY: CGFloat = 4
+        let height = self.tabBar.bounds.height + positionOnY*3
         let width = self.tabBar.bounds.width - positionOnX*2
         
         lazy var layer = CAShapeLayer()
         
         let bezierPath = UIBezierPath(
             roundedRect: CGRect(
-                x: positionOnX,
+                x: positionOnX+(width*0.15),
                 y: tabBar.bounds.minY - positionOnY,
-                width: width,
+                width: width*0.7,
                 height: height),
-            cornerRadius: height/2)
+            cornerRadius: height/4)
         
         layer.path = bezierPath.cgPath
         layer.fillColor = UIColor.tabBarBackgroundColor.cgColor
+        layer.opacity = ConstantsNumeric.opacityBackgroundTabBar
         return layer
     }
 

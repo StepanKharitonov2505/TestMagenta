@@ -39,8 +39,8 @@ class CollectionsPhotoCell: UICollectionViewCell, StandardSetupView {
     private func configureButton() {
         self.likeButton.setImage(UIImage(systemName: ConstantsStroke.heartSystemImage), for: .normal)
         self.likeButton.imageView?.contentMode = .scaleAspectFill
-        self.likeButton.tintColor = UIColor.gray
-        self.likeButton.backgroundColor = UIColor.defaultScreenBackgroundColor
+        self.likeButton.tintColor = UIColor.heartButtonColor
+        self.likeButton.backgroundColor = UIColor.tabBarBackgroundColor
         self.likeButton.layer.cornerRadius = ConstantsNumeric.cornerRadiusImageView
         self.likeButton.layer.masksToBounds = true
     }
