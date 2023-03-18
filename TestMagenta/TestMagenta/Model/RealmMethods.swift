@@ -21,11 +21,11 @@ final class RealmMethods {
                 print(error)
             }
         }
-    
-    func loadImageArray(completion: @escaping(([UIImage?])-> Void)) {
+
+    func loadImageArray(completion: @escaping(([UIImage?]) -> Void)) {
         DispatchQueue.global(qos: .background).async {
             do {
-                
+
                 let realm = try Realm()
                 let imageData = Array(realm.objects(StructureFavoriteJSON.self))
                 let imageDataArrayFromFileSystem = imageData
@@ -39,7 +39,7 @@ final class RealmMethods {
             }
         }
     }
-    
+
     // MARK: TestMethod
     func deleteAllData() {
         do {
@@ -51,5 +51,4 @@ final class RealmMethods {
             print(error)
         }
     }
-    
 }

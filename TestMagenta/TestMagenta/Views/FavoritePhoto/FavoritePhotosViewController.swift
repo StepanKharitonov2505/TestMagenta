@@ -8,7 +8,7 @@
 import UIKit
 
 class FavoritePhotosViewController: BaseViewController {
-    
+
     // MARK: Properties
     private var dataOnRealm: [UIImage?] = [] {
         didSet {
@@ -19,12 +19,12 @@ class FavoritePhotosViewController: BaseViewController {
     }
     private var loadDataMethods = RealmMethods()
     private var imageFileDirectoryMethod = ImageInFileDirectory()
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customView.activityIndicator.startAnimating()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loadDataMethods.loadImageArray { item in
@@ -41,10 +41,12 @@ extension FavoritePhotosViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataOnRealm.count
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantsStroke.randomPhotoReuseId, for: indexPath) as? CollectionsPhotoCell else { return UICollectionViewCell() }
-        
+
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantsStroke.randomPhotoReuseId,
+            for: indexPath) as? CollectionsPhotoCell else {
+            return UICollectionViewCell() }
         let element = dataOnRealm[indexPath.item]
         cell.likeButton.isHidden = true
         cell.imageView.image = element

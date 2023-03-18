@@ -29,7 +29,7 @@ final class ImageInFileDirectory {
         print("success getting path")
         return UIImage(contentsOfFile: path)
     }
-    
+
     private func getPathForImage(url: String) -> URL? {
         guard let path = FileManager
             .default

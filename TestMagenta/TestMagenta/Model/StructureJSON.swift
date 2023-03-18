@@ -11,7 +11,7 @@ class StructureJSON: Codable {
     let id: String
     let url: String
     let downloadUrl: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case url

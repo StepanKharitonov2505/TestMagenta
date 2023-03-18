@@ -20,7 +20,7 @@ class RandomPhotoViewController: BaseViewController {
         }
     }
     private var pageNumber: Int = 1
-    
+
     // MARK: Functions
     override func dataSetup() {
         loadDataMethods.getImage(pageNumber: pageNumber) {[weak self] imageDataArray in
@@ -28,7 +28,7 @@ class RandomPhotoViewController: BaseViewController {
             self.imageDataArray = imageDataArray
         }
     }
-    
+
     private func loadMoreData() {
         self.pageNumber += 1
         self.loadDataMethods.getImage(pageNumber: self.pageNumber) {[weak self] imageDataArray in
@@ -43,9 +43,12 @@ extension RandomPhotoViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageDataArray.count
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantsStroke.randomPhotoReuseId, for: indexPath) as? CollectionsPhotoCell else { return UICollectionViewCell() }
+
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantsStroke.randomPhotoReuseId,
+            for: indexPath) as? CollectionsPhotoCell else {
+            return UICollectionViewCell() }
         let element = imageDataArray[indexPath.row]
         let url = URL(string: element.downloadUrl)
         cell.imageView.sd_imageTransition = .fade(duration: 0.3)
@@ -55,7 +58,7 @@ extension RandomPhotoViewController {
         cell.likeButton.isUserInteractionEnabled = true
         return cell
     }
-    
+
     @objc func tapButton(sender: UIButton) {
         let element = imageDataArray[sender.tag]
         let replaceName = element.downloadUrl
@@ -74,10 +77,11 @@ extension RandomPhotoViewController {
 
 // MARK: Collection Delegate
 extension RandomPhotoViewController {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
             if indexPath.item == imageDataArray.count - 10 {
                 loadMoreData()
             }
         }
 }
-
