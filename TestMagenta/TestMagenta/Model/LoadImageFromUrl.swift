@@ -9,14 +9,14 @@ import Foundation
 import RealmSwift
 
 final class LoadImageFromUrl {
-    
+
     func getImage(pageNumber: Int, completion: @escaping([StructureJSON]) -> Void ) {
         guard let url = URL(string: ConstantsStroke.loadPhotosUrl+"?page=\(pageNumber)") else { return }
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         let queue = DispatchQueue.global(qos: .utility)
         queue.async {
-            session.dataTask(with: url) { (data, response, error) in
+            session.dataTask(with: url) { (data, _, error) in
                 guard let jsonData = data else { return }
                 do {
                     let imageData = try JSONDecoder().decode([StructureJSON].self, from: jsonData)

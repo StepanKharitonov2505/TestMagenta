@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 
 class CollectionsPhotoCell: UICollectionViewCell, StandardSetupView {
-    
+
     let imageView = UIImageView()
     let likeButton = UIButton()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureUI()
@@ -22,7 +22,7 @@ class CollectionsPhotoCell: UICollectionViewCell, StandardSetupView {
         super.init(coder: aDecoder)
         self.configureUI()
     }
-    
+
     func configureUI() {
         self.backgroundColor = UIColor.clear
         self.addChild()
@@ -30,12 +30,12 @@ class CollectionsPhotoCell: UICollectionViewCell, StandardSetupView {
         self.configureButton()
         self.setupConstraint()
     }
-    
+
     func addChild() {
         self.contentView.addSubview(imageView)
         self.contentView.addSubview(likeButton)
     }
-    
+
     private func configureButton() {
         self.likeButton.setImage(UIImage(systemName: ConstantsStroke.heartSystemImage), for: .normal)
         self.likeButton.imageView?.contentMode = .scaleAspectFill
@@ -44,14 +44,14 @@ class CollectionsPhotoCell: UICollectionViewCell, StandardSetupView {
         self.likeButton.layer.cornerRadius = ConstantsNumeric.cornerRadiusImageView
         self.likeButton.layer.masksToBounds = true
     }
-    
+
     private func configureImageView() {
         self.imageView.contentMode = .scaleAspectFill
         self.imageView.layer.masksToBounds = true
         self.imageView.layer.cornerRadius = ConstantsNumeric.cornerRadiusImageView
         self.imageView.backgroundColor = .lightGray.withAlphaComponent(0.1)
     }
-    
+
     func setupConstraint() {
         self.imageView.snp.makeConstraints { make in
             make.leading.equalTo(self.contentView.snp.leading)
@@ -59,7 +59,7 @@ class CollectionsPhotoCell: UICollectionViewCell, StandardSetupView {
             make.bottom.equalTo(self.contentView.snp.bottom)
             make.top.equalTo(self.contentView.snp.top)
         }
-        
+
         self.likeButton.snp.makeConstraints { make in
             make.height.equalTo(self.imageView.snp.height).multipliedBy(0.15)
             make.width.equalTo(self.imageView.snp.width).multipliedBy(0.25)

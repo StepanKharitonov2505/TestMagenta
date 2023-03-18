@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class CollectionsPhotoView: UIView, StandardSetupView {
-    
+
     let collectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
@@ -20,7 +20,7 @@ class CollectionsPhotoView: UIView, StandardSetupView {
         let activity = UIActivityIndicatorView(style: .large)
         activity.color = UIColor.white
         activity.hidesWhenStopped = true
-        
+
         return activity
     }()
 
@@ -33,7 +33,7 @@ class CollectionsPhotoView: UIView, StandardSetupView {
         super.init(coder: aDecoder)
         self.configureUI()
     }
-    
+
     func configureUI() {
         self.collectionViewLayout.scrollDirection = .vertical
         self.collectionViewLayout.headerReferenceSize = .zero
@@ -42,12 +42,12 @@ class CollectionsPhotoView: UIView, StandardSetupView {
         self.addChild()
         setupConstraint()
     }
-    
+
     func addChild() {
         self.addSubview(collectionView)
         self.addSubview(activityIndicator)
     }
-    
+
     func setupConstraint() {
         self.collectionView.snp.makeConstraints { make in
             make.leading.equalTo(self.snp.leading)
@@ -55,7 +55,7 @@ class CollectionsPhotoView: UIView, StandardSetupView {
             make.bottom.equalTo(self.snp.bottom)
             make.top.equalTo(self.snp.top)
         }
-        
+
         self.activityIndicator.snp.makeConstraints {
             $0.center.equalTo(self.snp.center)
         }
