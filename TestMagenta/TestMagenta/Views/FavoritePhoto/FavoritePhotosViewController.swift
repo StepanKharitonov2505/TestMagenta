@@ -10,11 +10,18 @@ import UIKit
 class FavoritePhotosViewController: BaseViewController {
     
     // MARK: Properties
-    private var dataOnRealm: [StructureFavoriteJSON] = []
+    private var dataOnRealm: [UIImage?] = []
     private var loadDataMethods = RealmMethods()
+    private var imageFileDirectoryMethod = ImageInFileDirectory()
     
     override func dataSetup() {
         self.dataOnRealm = self.loadDataMethods.loadImageArray()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.dataOnRealm = self.loadDataMethods.loadImageArray()
+        self.customView.collectionView.reloadData()
     }
 }
 
@@ -28,10 +35,8 @@ extension FavoritePhotosViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstantsStroke.randomPhotoReuseId, for: indexPath) as? CollectionsPhotoCell else { return UICollectionViewCell() }
         
         let element = dataOnRealm[indexPath.item]
-        cell.viewForLikeButton.isHidden = true
         cell.likeButton.isHidden = true
-        cell.imageView.sd_imageTransition = .fade(duration: 0.3)
-        cell.imageView.image = UIImage(data: element.data)
+        cell.imageView.image = element
 
         return cell
     }

@@ -8,12 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol StandardSetupView {
-    func configureUI()
-    func addChild()
-    func setupConstraint()
-}
-
 class CollectionsPhotoView: UIView, StandardSetupView {
     
     let collectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
