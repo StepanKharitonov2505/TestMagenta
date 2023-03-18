@@ -10,18 +10,29 @@ import UIKit
 class FavoritePhotosViewController: BaseViewController {
     
     // MARK: Properties
-    private var dataOnRealm: [UIImage?] = []
+    private var dataOnRealm: [UIImage?] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.customView.collectionView.reloadData()
+            }
+        }
+    }
     private var loadDataMethods = RealmMethods()
     private var imageFileDirectoryMethod = ImageInFileDirectory()
-    
-    override func dataSetup() {
-        self.dataOnRealm = self.loadDataMethods.loadImageArray()
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.customView.activityIndicator.startAnimating()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.dataOnRealm = self.loadDataMethods.loadImageArray()
-        self.customView.collectionView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadDataMethods.loadImageArray { item in
+           DispatchQueue.main.async {
+               self.customView.activityIndicator.stopAnimating()
+           }
+            self.dataOnRealm = item
+        }
     }
 }
 

@@ -9,10 +9,10 @@ import Foundation
 import RealmSwift
 
 final class RealmMethods {
-    func saveFavoriteImageData(url: String) {
+    func saveFavoriteImageData(imageName: String, url: String) {
             do {
-                let object = StructureFavoriteJSON(url: url)
-                Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: false)
+                let object = StructureFavoriteJSON(imageName: imageName, url: url)
+                Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
                 let realm = try Realm()
                 realm.beginWrite()
                 realm.add(object, update: .modified)
@@ -22,18 +22,21 @@ final class RealmMethods {
             }
         }
     
-    func loadImageArray() -> [UIImage?] {
-        do {
-            let realm = try Realm()
-            let imageData = Array(realm.objects(StructureFavoriteJSON.self))
-            let imageDataArrayFromFileSystem = imageData
-                .map {
-                    ImageInFileDirectory().getImage(url: $0.url)
-                }
-            return imageDataArrayFromFileSystem
-        } catch {
-            print(error)
-            return []
+    func loadImageArray(completion: @escaping(([UIImage?])-> Void)) {
+        DispatchQueue.global(qos: .background).async {
+            do {
+                
+                let realm = try Realm()
+                let imageData = Array(realm.objects(StructureFavoriteJSON.self))
+                let imageDataArrayFromFileSystem = imageData
+                    .map {
+                        ImageInFileDirectory().getImage(url: $0.imageName)
+                    }
+                completion(imageDataArrayFromFileSystem)
+            } catch {
+                print(error)
+                return
+            }
         }
     }
     

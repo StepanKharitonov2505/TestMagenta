@@ -16,6 +16,13 @@ class CollectionsPhotoView: UIView, StandardSetupView {
         collectionView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         return collectionView
     }()
+    let activityIndicator: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .large)
+        activity.color = UIColor.white
+        activity.hidesWhenStopped = true
+        
+        return activity
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +45,7 @@ class CollectionsPhotoView: UIView, StandardSetupView {
     
     func addChild() {
         self.addSubview(collectionView)
+        self.addSubview(activityIndicator)
     }
     
     func setupConstraint() {
@@ -46,6 +54,10 @@ class CollectionsPhotoView: UIView, StandardSetupView {
             make.trailing.equalTo(self.snp.trailing)
             make.bottom.equalTo(self.snp.bottom)
             make.top.equalTo(self.snp.top)
+        }
+        
+        self.activityIndicator.snp.makeConstraints {
+            $0.center.equalTo(self.snp.center)
         }
     }
 }

@@ -7,7 +7,6 @@ target 'TestMagenta' do
 pod 'SDWebImage'
 pod 'RealmSwift' 
 pod 'SnapKit'
-pod 'SwiftyJSON'
   # Pods for TestMagenta
 
 end

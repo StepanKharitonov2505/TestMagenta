@@ -7,7 +7,6 @@
 
 import UIKit
 import SDWebImage
-import RealmSwift
 
 class RandomPhotoViewController: BaseViewController {
 
@@ -50,7 +49,7 @@ extension RandomPhotoViewController {
         let element = imageDataArray[indexPath.row]
         let url = URL(string: element.downloadUrl)
         cell.imageView.sd_imageTransition = .fade(duration: 0.3)
-        cell.imageView.sd_setImage(with: url) 
+        cell.imageView.sd_setImage(with: url)
         cell.likeButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         cell.likeButton.tag = indexPath.row
         cell.likeButton.isUserInteractionEnabled = true
@@ -67,7 +66,7 @@ extension RandomPhotoViewController {
         DispatchQueue.global(qos: .utility).async {
             if let data = try? Data(contentsOf: url) {
                 ImageInFileDirectory().saveImage(url: replaceName, data: data)
-                RealmMethods().saveFavoriteImageData(url: replaceName)
+                RealmMethods().saveFavoriteImageData(imageName: replaceName, url: element.downloadUrl)
             }
         }
     }
